@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import "./App.css";
 import { Button, Select, Steps, Form, Tabs, Typography } from "antd";
-import { SiWindowsxp,SiLinux,SiApple } from "react-icons/si";
-import {RiNumber1 } from "react-icons/ri";
+import { SiWindowsxp, SiLinux, SiApple } from "react-icons/si";
+import { RiNumber1 } from "react-icons/ri";
 
 // import steps from "./components/stepsData";
 
@@ -18,9 +18,30 @@ const { Step } = Steps;
 
 function App() {
 
+
   const [os, setOs] = useState('black');
   const [os1, setOs1] = useState('black');
   const [os2, setOs2] = useState('black');
+  const activeBtn1 = () => {
+    setOs("white");
+    setOs1("black");
+    setOs2("black");
+
+  };
+  const activeBtn2 = () => {
+    setOs("black");
+    setOs1("white");
+    setOs2("black");
+  };
+  const activeBtn3 = () => {
+
+
+    setOs("black");
+    setOs1("black");
+    setOs2("white");
+
+  };
+
   const [color, setColor] = useState('rgba(248, 137, 0, 0.65)');
   const [textColor, setTextColor] = useState('rgba(255, 255, 255, 0.73)');
   const [textFont, setTextFont] = useState('normal');
@@ -34,6 +55,33 @@ function App() {
   const [color1, setColor1] = useState('rgba(248, 137, 0, 0.65)');
   const [textColor1, setTextColor1] = useState('rgba(255, 255, 255, 0.73)');
 
+  const downloadBtn = () => {
+    setColor("black");
+    setTextColor("white");
+    setTextFont("bold");
+    setButtonBorder("black");
+    setdropShadow("inset 0 4px 4px #FC6C00");
+
+    setColor1("rgba(248, 137, 0, 0.65)");
+    setTextColor1("rgba(255, 255, 255, 0.73)");
+    setTextFont1("normal");
+    setButtonBorder1("rgba(248, 137, 0, 0.2)");
+    setdropShadow1("");
+
+  };
+  const downloadBtn2 = () => {
+    setColor1("black");
+    setTextColor1("white");
+    setTextFont1("bold");
+    setButtonBorder1("black");
+    setdropShadow1("inset 0 4px 4px #FC6C00");
+
+    setColor("rgba(248, 137, 0, 0.65)");
+    setTextColor("rgba(255, 255, 255, 0.73)");
+    setTextFont("normal");
+    setButtonBorder("rgba(248, 137, 0, 0.2)");
+    setdropShadow("");
+  };
 
   const [current, setCurrent] = useState(0);
   const [OS, setOS] = useState("apple");
@@ -127,12 +175,13 @@ function App() {
           </div>
 
           <div className="  flex max-w-[657px] h-[192px] p-[62px] pl-0  ml-[8px]  bg-black " layout="vertical">
-            <div className=" max-w-[150px]  h-[192px] flex justify-center ">
+            <div className=" max-w-[150px]  h-[192px] flex justify-center drop-shadow-[0px_4px_4px_rgba(255, 255, 255, 0.25)] ">
               <div
-                onClick={() =>{ handleOSselect("apple");setOs("white")}}
+
+                onClick={() => { activeBtn1(setOs) }}
                 className={`${OS === "apple" ? "selectedOS" : ""
-                  }  w-[82.5px] sm:w-[150px] sm:h-[125px]  h-[69.2px] rounded-[3px] cursor-pointer text-center  drop-shadow-[0_2px_4px_rgba(0,72,217,0.1)] border-[#F88900] border-2 `}
-                  style={{backgroundColor:os}}
+                  }  w-[82.5px] sm:w-[150px] sm:h-[125px]  h-[69.2px] rounded-[3px] cursor-pointer text-center  drop-shadow-[0_4px_4px_rgba(0,72,217,0.1)] border-[#F88900]/60 border-2 ` }
+                style={{ backgroundColor: os, boxShadow:" 0 1px 2.5px #F88900 " }}
               >
                 <div className=" cursor-pointer  sm:w-[100px] w-[55px] sm:h-[100px] h-[55px] sm:py-6 justify-center items-center bg-white ml-[15%] mt-[7%] rounded-full  ">
                   <div className=" w-[59.1px] h-[59.9px]  sm:text-[50.2px] text-[40px]  top-[25%] left-[15%] sm:mt-[2px] mt-[-4px] sm:ml-[25px] ml-[6.5px]  absolute">
@@ -147,9 +196,9 @@ function App() {
 
             <div className="max-w-[150px]  h-[192px] flex sm:mx-[100px] mx-[25px]  ">
               <div
-                onClick={() =>{ handleOSselect("linix");setOs1("white")}}
-                className={`${OS === "linix" ? "selectedOS" : ""}   w-[82.5px] sm:w-[150px] sm:h-[125px]  h-[69.2px] rounded-[3px] cursor-pointer text-center  drop-shadow-[0_2px_4px_rgba(0,72,217,0.1)] border-[#F88900] border-2 `}
-              style={{backgroundColor:os1}}
+                onClick={() => { activeBtn2(setOs1) }}
+                className={`${OS === "linix" ? "selectedOS" : ""}   w-[82.5px] sm:w-[150px] sm:h-[125px]  h-[69.2px] rounded-[3px] cursor-pointer text-center  drop-shadow-[0_2px_4px_rgba(0,72,217,0.1)] border-[#F88900]/60 border-2 `}
+                style={{ backgroundColor: os1,boxShadow:"0 1px 2.5px #F88900" }}
               >
                 <div >
                   <div className="bg-center cursor-pointer  sm:w-[100px] w-[55px] sm:h-[100px] h-[55px] sm:py-6 justify-center items-center bg-[#F3BF00] ml-[15%] mt-[7%] rounded-full">
@@ -165,10 +214,10 @@ function App() {
               </p>
             </div>
             <div className="max-w-[150px]  h-[192px] flex  ">
-              <div 
-                onClick={() => {handleOSselect("windows");setOs2("white")}}
-                className={`${OS === "windows" ? "selectedOS" : "null"} bg-black  w-[82.5px] sm:w-[150px] sm:h-[125px]  h-[69.2px] rounded-[3px] cursor-pointer text-center  drop-shadow-[0_2px_4px_rgba(0,72,217,0.1)] border-[#F88900] border-2 `}
-              style={{backgroundColor:os2}}
+              <div
+                onClick={() => { activeBtn3(setOs2) }}
+                className={`${OS === "windows" ? "selectedOS" : "null"} bg-black  w-[82.5px] sm:w-[150px] sm:h-[125px]  h-[69.2px] rounded-[3px] cursor-pointer text-center  drop-shadow-[0_2px_4px_rgba(0,72,217,0.1)] border-[#F88900]/60 border-2 `}
+                style={{ backgroundColor: os2 ,boxShadow:"0 1px 2.5px #F88900" }}
               >
                 <div className="cursor-pointer  sm:w-[100px] w-[60px] sm:h-[100px] h-[60px] sm:py-6 justify-center items-center bg-[#0048D9] ml-[15%] sm:mt-[7%] mt-[3.5%] rounded-full   ">
                   <div className="  w-[50.2px] h-[59.9px]  sm:text-[50.2px] text-[40px]  top-[25%] left-[15%]   sm:mt-[2px] mt-[-2px] sm:ml-[25px] ml-[10.5px]  absolute">
@@ -206,7 +255,7 @@ function App() {
               <Tabs defaultActiveKey="1" onChange={onChange}>
                 <TabPane tab={
                   <Button
-                    onClick={() => { setColor("black"); setTextColor('white'); setTextFont('bold'); setButtonBorder('black'); setdropShadow('inset 0 4px 4px #FC6C00') }} className='inline-block  text-center ml-[3px]   hover:bg-violet-600 text-white active:bg-[#F88900]/95  sm:w-[309px] w-[132px] sm:h-[47px] h-[33px]  ' shape="round" style={{ background: color, color: textColor, height: "71px", borderColor: buttonBorder, borderWidth: "9px", boxShadow: dropShadow, boxSizing:"9px" }}>
+                    onClick={() => { downloadBtn(setColor, setTextColor, setTextFont, setButtonBorder, setdropShadow); }} className='inline-block  text-center ml-[3px]   hover:bg-violet-600 text-white active:bg-[#F88900]/95  sm:w-[309px] w-[132px] sm:h-[47px] h-[33px]  ' shape="round" style={{ background: color, color: textColor, height: "71px", borderColor: buttonBorder, borderWidth: "9px", boxShadow: dropShadow, boxSizing: "9px" }}>
                     <p style={{ fontWeight: textFont }} className='font-bold mb-[7px] text-center  sm:text-[30px] text-[10px] leading-[34.5px] '>Download Daboost</p>
                   </Button>
                 } key="1">
@@ -224,7 +273,7 @@ function App() {
                   </>
                 </TabPane>
                 <TabPane tab={
-                  <Button onClick={() => { setColor1("black"); setTextColor1('white'); setTextFont1('bold'); setButtonBorder1('black'), setdropShadow1('inset 0 4px 4px #FC6C00') }} className='inline-block  text-center sm:ml-[3px] ml-0   hover:bg-violet-600 text-white active:bg-[#F88900]/95  sm:w-[309px] w-[132px] sm:h-[47px] h-[33px] ' shape="round" style={{ textAlign: "center", background: color1, color: textColor1, height: "71px", borderColor: buttonBorder1, borderWidth: "9px", boxShadow: dropShadow1, }}>
+                  <Button onClick={() => { downloadBtn2(setColor1, setTextColor1, setTextFont1, setButtonBorder1, setdropShadow1, ) }} className='inline-block  text-center sm:ml-[3px] ml-0   hover:bg-violet-600 text-white active:bg-[#F88900]/95  sm:w-[309px] w-[132px] sm:h-[47px] h-[33px] ' shape="round" style={{ textAlign: "center", background: color1, color: textColor1, height: "71px", borderColor: buttonBorder1, borderWidth: "9px", boxShadow: dropShadow1, }}>
                     <p style={{ fontWeight: textFont1 }} className='  font-bold mb-[7px] text-center sm:text-[30px] text-[10px] leading-[34.5px]'>Use Curl Command</p>
                   </Button>
                 }
@@ -260,11 +309,11 @@ function App() {
     <>
       <div className="flex justify-between max-w-[1440px] max-h-[1024px] absolute mx-auto h-screen w-screen items-auto  flex-col border-solid gap-0.75  left-0 right-0  box-border   rounded-xl shadow-[0_2px_4px_rgba(0,72,217,0.1)] p-[40px_40px_448px]">
         <div className="text-center  ">
-          <Steps  className='text-4xl max-w-[1246px] ' size="large" current={current}>
+          <Steps className='text-4xl max-w-[1246px] ' size="large" current={current}>
             {steps.map((item) => (
               <Step
-              // icon={<BiSquareRounded />}
-              // icon={<RiNumber1/>}
+                // icon={<BiSquareRounded />}
+                // icon={<RiNumber1/>}
                 key={item.title}
                 title={item.title}
               />
@@ -274,10 +323,10 @@ function App() {
         <div >{steps[current].content}</div>
         <div>
           {current < steps.length - 1 && (
-            <Button 
-            
+            <Button
+
               className=" absolute rounded-sm w-[111px] sm:w-[157px] sm:h-[47px] h-[33px] right-[6%] "
-              style={{ justifyContent:"center", alignItems: "flex-end", height: "47px", background: " #FC6C00", borderColor: "black", borderRadius: "4px", position: "absolute" }}
+              style={{ justifyContent: "center", alignItems: "flex-end", height: "47px", background: " #FC6C00", borderColor: "black", borderRadius: "4px", position: "absolute" }}
               onClick={() => next()}
             >
               <p className='font-sans not-italic justify-center py-[3%] font-bold text-[17px] flex text-white   tracking-[-0.01em] '>Next</p>
